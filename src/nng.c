@@ -456,6 +456,20 @@ nng_dialer_getopt_ms(nng_dialer id, const char *name, nng_duration *valp)
 	return (nng_dialer_getopt(id, name, valp, &sz));
 }
 
+uint32_t
+nng_dialer_getpipe(nng_dialer id)
+{
+	nni_ep *ep;
+	int     rv;
+
+	if ((rv = nni_ep_find(&ep, id)) != 0) {
+		return (rv);
+	}
+
+	nni_ep_rele(ep);
+	return nni_ep_getpipe(ep);
+}
+
 int
 nng_listener_setopt(
     nng_listener id, const char *name, const void *v, size_t sz)

@@ -642,6 +642,17 @@ nni_ep_getopt(nni_ep *ep, const char *name, void *valp, size_t *szp)
 	return (nni_sock_getopt(ep->ep_sock, name, valp, szp));
 }
 
+uint32_t
+nni_ep_getpipe(nni_ep *ep)
+{
+	nni_pipe *p;
+	p = nni_list_last(&ep->ep_pipes);
+	if (p == NULL) {
+		return 0;
+	}
+	return nni_pipe_id(p);
+}
+
 void
 nni_ep_list_init(nni_list *list)
 {

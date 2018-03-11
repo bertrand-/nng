@@ -474,7 +474,13 @@ TestMain("Socket Operations", {
 			So(nng_setopt_ms(s2, NNG_OPT_RECVTIMEO, to) == 0);
 
 			So(nng_listen(s1, a, NULL, 0) == 0);
-			So(nng_dial(s2, a, NULL, 0) == 0);
+			
+			nng_dialer dl;
+			So(nng_dial(s2, a, &dl, 0) == 0);
+
+			Convey("Get Pipe works", {
+				So(nng_dialer_getpipe(dl) != 0);
+			});
 
 			So(nng_send(s1, "abc", 4, 0) == 0);
 			So(nng_recv(s2, &buf, &sz, NNG_FLAG_ALLOC) == 0);

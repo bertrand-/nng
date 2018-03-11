@@ -29,6 +29,7 @@ extern int       nni_ep_listen(nni_ep *, int);
 extern void      nni_ep_list_init(nni_list *);
 extern int       nni_ep_setopt(nni_ep *, const char *, const void *, size_t);
 extern int       nni_ep_getopt(nni_ep *, const char *, void *, size_t *);
+extern uint32_t  nni_ep_getpipe(nni_ep *ep);
 extern int nni_ep_pipe_add(nni_ep *ep, nni_pipe *);
 extern void nni_ep_pipe_remove(nni_ep *, nni_pipe *);
 extern int  nni_ep_mode(nni_ep *);

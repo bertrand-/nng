@@ -168,6 +168,7 @@ NNG_DECL int nng_dialer_getopt_ms(nng_dialer, const char *, nng_duration *);
 NNG_DECL int nng_dialer_getopt_size(nng_dialer, const char *, size_t *);
 NNG_DECL int nng_dialer_getopt_uint64(nng_dialer, const char *, uint64_t *);
 NNG_DECL int nng_dialer_getopt_ptr(nng_dialer, const char *, void **);
+NNG_DECL uint32_t nng_dialer_getpipe(nng_dialer);
 
 // nng_listener_setopt sets an option for a dialer.  This value is
 // not stored in the socket.  Subsequent setopts on the socket may
