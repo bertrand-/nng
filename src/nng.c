@@ -443,6 +443,24 @@ nng_dial(nng_socket sid, const char *addr, nng_dialer *dp, int flags)
 	return (0);
 }
 
+uint32_t
+nng_dialer_getpipe(nng_dialer d)
+{
+	nni_dialer *nnid;
+	int         rv;
+
+	if ((rv = nni_dialer_find(&nnid, d.id)) != 0) {
+		return (rv);
+	}
+	
+	uint32_t pid;
+	pid = nni_pipe_id(nnid->d_pipe);
+	
+	nni_dialer_rele(nnid);
+	
+	return pid;
+}
+
 int
 nng_listen(nng_socket sid, const char *addr, nng_listener *lp, int flags)
 {

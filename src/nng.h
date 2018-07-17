@@ -316,6 +316,7 @@ NNG_DECL int nng_dialer_getopt_sockaddr(
     nng_dialer, const char *, nng_sockaddr *);
 NNG_DECL int nng_dialer_getopt_uint64(nng_dialer, const char *, uint64_t *);
 NNG_DECL int nng_dialer_getopt_ptr(nng_dialer, const char *, void **);
+NNG_DECL uint32_t nng_dialer_getpipe(nng_dialer);
 
 // nng_dialer_getopt_string is special -- it allocates a string to hold the
 // resulting string, which should be freed with nng_strfree when it is
