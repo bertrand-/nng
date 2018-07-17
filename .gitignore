@@ -6,3 +6,4 @@ wbuild
 .vscode/.cmaketools.json
 .vscode
 etc/nng.sublime-workspace
+build*/

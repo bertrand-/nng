@@ -354,38 +354,38 @@ TestMain("TLS Transport", {
 		    NNG_EADDRINVAL);
 	});
 
-#if 0
-// We really need to have pipe start/negotiate as one of the key steps during
-// connect establish.  Until that happens, we cannot verify the peer.
-// See bug #208.
-	Convey("Verify works", {
-		nng_socket   s1;
-		nng_socket   s2;
-		nng_listener l;
-		char *       buf;
-		size_t       sz;
-		char         addr[NNG_MAXADDRLEN];
+// #if 0
+// // We really need to have pipe start/negotiate as one of the key steps during
+// // connect establish.  Until that happens, we cannot verify the peer.
+// // See bug #208.
+	// Convey("Verify works", {
+		// nng_socket   s1;
+		// nng_socket   s2;
+		// nng_listener l;
+		// char *       buf;
+		// size_t       sz;
+		// char         addr[NNG_MAXADDRLEN];
 
-		So(nng_pair_open(&s1) == 0);
-		So(nng_pair_open(&s2) == 0);
-		Reset({
-			nng_close(s2);
-			nng_close(s1);
-		});
-		trantest_next_address(addr, "tls+tcp://:%u");
-		So(nng_listener_create(&l, s1, addr) == 0);
-		So(init_listener_tls_file(NULL, l) == 0);
-		So(nng_listener_start(l, 0) == 0);
-		nng_msleep(100);
+		// So(nng_pair_open(&s1) == 0);
+		// So(nng_pair_open(&s2) == 0);
+		// Reset({
+			// nng_close(s2);
+			// nng_close(s1);
+		// });
+		// trantest_next_address(addr, "tls+tcp://:%u");
+		// So(nng_listener_create(&l, s1, addr) == 0);
+		// So(init_listener_tls_file(NULL, l) == 0);
+		// So(nng_listener_start(l, 0) == 0);
+		// nng_msleep(100);
 
-		// reset port back one
-		trantest_prev_address(addr, "tls+tcp://127.0.0.1:%u");
-		So(nng_setopt_int(s2, NNG_OPT_TLS_AUTH_MODE,
-		       NNG_TLS_AUTH_MODE_REQUIRED) == 0);
+		// // reset port back one
+		// trantest_prev_address(addr, "tls+tcp://127.0.0.1:%u");
+		// So(nng_setopt_int(s2, NNG_OPT_TLS_AUTH_MODE,
+		       // NNG_TLS_AUTH_MODE_REQUIRED) == 0);
 
-		So(nng_dial(s2, addr, NULL, 0) == NNG_EPEERAUTH);
-	});
-#endif
+		// So(nng_dial(s2, addr, NULL, 0) == NNG_EPEERAUTH);
+	// });
+// #endif
 
 	Convey("No verify works", {
 		nng_socket   s1;

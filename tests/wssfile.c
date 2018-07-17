@@ -335,12 +335,12 @@ TestMain("WebSocket Secure (TLS) Transport (file based)", {
 		So(nng_dialer_setopt_string(
 		       d, NNG_OPT_TLS_SERVER_NAME, "example.com") == 0);
 		So(nng_dialer_start(d, 0) == 0);
-#if 0
-		So(nng_setopt_int(s2, NNG_OPT_TLS_AUTH_MODE,
-		       NNG_TLS_AUTH_MODE_OPTIONAL) == 0);
-		So(nng_setopt_ms(s2, NNG_OPT_RECVTIMEO, 200) == 0);
-		So(nng_dial(s2, addr, NULL, 0) == 0);
-#endif
+// #if 0
+		// So(nng_setopt_int(s2, NNG_OPT_TLS_AUTH_MODE,
+		       // NNG_TLS_AUTH_MODE_OPTIONAL) == 0);
+		// So(nng_setopt_ms(s2, NNG_OPT_RECVTIMEO, 200) == 0);
+		// So(nng_dial(s2, addr, NULL, 0) == 0);
+// #endif
 		nng_msleep(100);
 
 		So(nng_send(s1, "hello", 6, 0) == 0);
