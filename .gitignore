@@ -7,3 +7,4 @@ wbuild
 .vscode
 .DS_Store
 etc/nng.sublime-workspace
+build*/

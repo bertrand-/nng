@@ -203,7 +203,12 @@ test_send_recv(void)
 	TEST_CHECK(nng_setopt_ms(s2, NNG_OPT_RECVTIMEO, to) == 0);
 
 	TEST_CHECK(nng_listen(s1, a, NULL, 0) == 0);
-	TEST_CHECK(nng_dial(s2, a, NULL, 0) == 0);
+	
+	nng_dialer dl;
+	nng_pipe pipe;
+	TEST_CHECK(nng_dial(s2, a, &dl, 0) == 0);
+	TEST_CHECK(nng_dialer_getpipe(dl, &pipe) == 0);
+	TEST_CHECK(pipe.id > 0);
 
 	TEST_CHECK(nng_send(s1, "abc", 4, 0) == 0);
 	TEST_CHECK(nng_recv(s2, &buf, &sz, NNG_FLAG_ALLOC) == 0);

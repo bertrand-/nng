@@ -58,5 +58,6 @@
 #include "core/listener.h"
 #include "core/pipe.h"
 #include "core/socket.h"
+#include "core/sockimpl.h"
 
 #endif // CORE_NNG_IMPL_H

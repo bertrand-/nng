@@ -389,6 +389,25 @@ nng_dial(nng_socket sid, const char *addr, nng_dialer *dp, int flags)
 }
 
 int
+nng_dialer_getpipe(nng_dialer did, nng_pipe *pipe)
+{
+	int         rv;
+	nni_dialer *d;
+
+	if ((rv = nni_dialer_find(&d, did.id)) != 0) {
+		return (rv);
+	}
+	
+    if (pipe != NULL) {
+        nng_pipe p;
+        p.id = nni_pipe_id(d->d_pipe);
+        *pipe = p;
+    }	
+	nni_dialer_rele(d);	
+	return (rv);
+}
+
+int
 nng_listen(nng_socket sid, const char *addr, nng_listener *lp, int flags)
 {
 	int           rv;
